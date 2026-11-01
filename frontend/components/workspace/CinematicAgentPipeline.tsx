@@ -182,36 +182,36 @@ export function CinematicAgentPipeline({
   const currentRunningIdx = stages.findIndex((s) => s.status === "running");
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-line bg-[#080B10] p-6 shadow-2xl">
+    <div className="relative overflow-hidden rounded-2xl border border-line bg-surface p-6 shadow-xs">
       {/* Background Cybernetic Grid & Glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(139,156,246,0.15),rgba(255,255,255,0))]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(197,243,106,0.15),rgba(255,255,255,0))]" />
       <div
-        className="pointer-events-none absolute inset-0 opacity-15"
+        className="pointer-events-none absolute inset-0 opacity-20"
         style={{
-          backgroundImage: `linear-gradient(#242B35 1px, transparent 1px), linear-gradient(90deg, #242B35 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(#D8DAD1 1px, transparent 1px), linear-gradient(90deg, #D8DAD1 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
         }}
       />
 
       {/* Cinematic HUD Header */}
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-line/60 pb-4">
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
         <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-accent/40 bg-accent/15 text-accent shadow-lg shadow-accent/20">
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-primary/20 bg-primary text-accent shadow-xs">
             <Zap className="h-5 w-5" />
             {running && (
-              <span className="absolute -inset-1 rounded-xl border border-accent animate-ping opacity-60" />
+              <span className="absolute -inset-1 rounded-xl border border-primary animate-ping opacity-60" />
             )}
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base font-bold text-ink tracking-tight flex items-center gap-2">
+              <h2 className="font-heading text-base font-bold text-heading tracking-tight flex items-center gap-2">
                 Autonomous Neural Agent Mesh
               </h2>
-              <span className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-accent uppercase">
+              <span className="rounded-md border border-primary/20 bg-primary/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-primary uppercase">
                 11 Cooperative Agents
               </span>
             </div>
-            <p className="text-xs text-mute mt-0.5">
+            <p className="text-xs text-mute mt-0.5 font-body">
               Live LangGraph evidence pipeline: streaming factual claims, temporal anchors, and gap intelligence.
             </p>
           </div>
@@ -219,7 +219,7 @@ export function CinematicAgentPipeline({
 
         {/* Live Status Indicators & Controls */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 rounded-lg border border-line/80 bg-surface/90 px-3 py-1.5 font-mono text-xs shadow-inner">
+          <div className="flex items-center gap-2 rounded-lg border border-line bg-elevated/40 px-3 py-1.5 font-mono text-xs shadow-xs">
             <span className={cn(
               "h-2 w-2 rounded-full",
               running ? "bg-accent animate-ping" : ready ? "bg-ok" : "bg-mute"
@@ -227,7 +227,7 @@ export function CinematicAgentPipeline({
             <span className="text-mute font-medium">State:</span>
             <span className={cn(
               "font-bold uppercase",
-              running ? "text-accent" : ready ? "text-ok" : "text-mute"
+              running ? "text-primary" : ready ? "text-ok" : "text-mute"
             )}>
               {running ? "Streaming Dataflow" : ready ? "Mesh Synchronized" : "Standby"}
             </span>
@@ -236,9 +236,9 @@ export function CinematicAgentPipeline({
           <button
             type="button"
             onClick={() => setReplayWave((v) => v + 1)}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-elevated/80 px-3 py-1.5 text-xs font-semibold text-mute hover:border-accent/40 hover:text-ink transition-colors shadow-sm"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-heading hover:border-primary/40 hover:bg-elevated/40 transition-colors shadow-xs"
           >
-            <RotateCcw className="h-3.5 w-3.5" />
+            <RotateCcw className="h-3.5 w-3.5 text-primary" />
             Pulse Wave
           </button>
         </div>
@@ -269,18 +269,18 @@ export function CinematicAgentPipeline({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className={cn(
-                    "group relative cursor-pointer rounded-xl border p-3.5 text-left transition-all backdrop-blur-md",
+                    "group relative cursor-pointer rounded-xl border p-3.5 text-left transition-all",
                     isSelected
-                      ? "ring-2 ring-accent border-accent/80 bg-surface shadow-xl"
-                      : "border-line/80 bg-surface/60 hover:border-line hover:bg-surface",
+                      ? "ring-2 ring-primary border-primary bg-surface shadow-md"
+                      : "border-line bg-elevated/30 hover:border-line hover:bg-elevated/60",
                     isRunning
-                      ? "ring-2 ring-accent border-accent bg-accent/10 shadow-[0_0_20px_rgba(139,156,246,0.35)]"
+                      ? "ring-2 ring-primary border-primary bg-primary/5 shadow-md"
                       : isCompleted
-                      ? "border-ok/30 hover:border-ok/60"
+                      ? "border-ok/30 bg-surface hover:border-ok/60"
                       : ""
                   )}
                   style={{
-                    boxShadow: isRunning ? `0 0 25px ${agent.glowColor}` : undefined,
+                    boxShadow: isRunning ? `0 0 20px ${agent.glowColor}` : undefined,
                   }}
                 >
                   {/* Glowing Top Pill / Agent Code */}
@@ -334,7 +334,7 @@ export function CinematicAgentPipeline({
                       )}
                     </div>
                     <div className="min-w-0">
-                      <div className="text-sm font-bold text-ink truncate leading-tight">
+                      <div className="text-sm font-heading font-bold text-heading truncate leading-tight">
                         {agent.role}
                       </div>
                       <div className="text-[11px] text-mute truncate capitalize">
@@ -344,15 +344,15 @@ export function CinematicAgentPipeline({
                   </div>
 
                   {/* Live Telemetry Bar */}
-                  <div className="mt-3 pt-2 border-t border-line/40">
+                  <div className="mt-3 pt-2 border-t border-line/50">
                     <div className="flex items-center justify-between text-[11px]">
                       <span className={cn(
                         "font-mono font-medium",
-                        isRunning ? "text-accent animate-pulse font-bold" : isCompleted ? "text-ok" : "text-mute"
+                        isRunning ? "text-primary animate-pulse font-bold" : isCompleted ? "text-ok" : "text-mute"
                       )}>
                         {isRunning ? "PROCESSING..." : isCompleted ? "COMPLETED" : "WAITING"}
                       </span>
-                      <span className="text-[10px] text-mute group-hover:text-accent transition-colors flex items-center gap-0.5">
+                      <span className="text-[10px] text-mute group-hover:text-primary transition-colors flex items-center gap-0.5">
                         Inspect <ArrowRight className="h-2.5 w-2.5" />
                       </span>
                     </div>
@@ -377,7 +377,7 @@ export function CinematicAgentPipeline({
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: [0.8, 1.05, 1], opacity: 1 }}
                       transition={{ duration: 0.4 }}
-                      className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-ok text-bg text-[9px] font-bold shadow"
+                      className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-ok text-surface text-[9px] font-bold shadow-xs"
                     >
                       ✓
                     </motion.div>
@@ -397,12 +397,12 @@ export function CinematicAgentPipeline({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className="relative z-10 mt-4 rounded-xl border border-line bg-surface/90 p-5 backdrop-blur-md shadow-xl"
+          className="relative z-10 mt-4 rounded-xl border border-line bg-surface p-5 shadow-xs"
         >
-          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line/50 pb-3">
+          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line pb-3">
             <div className="flex items-center gap-3">
               <div
-                className="flex h-10 w-10 items-center justify-center rounded-xl border shadow"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border shadow-xs"
                 style={{
                   borderColor: `${activeAgent.color}60`,
                   backgroundColor: `${activeAgent.color}25`,
@@ -413,7 +413,7 @@ export function CinematicAgentPipeline({
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base font-bold text-ink">{activeAgent.role}</h3>
+                  <h3 className="font-heading text-base font-bold text-heading">{activeAgent.role}</h3>
                   <span
                     className="font-mono text-xs font-bold px-2 py-0.5 rounded border"
                     style={{
@@ -434,7 +434,7 @@ export function CinematicAgentPipeline({
                 <button
                   type="button"
                   onClick={() => onSelectTab(activeAgent.targetTab!)}
-                  className="flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/15 px-3 py-1.5 text-xs font-semibold text-accent hover:bg-accent/25 transition-colors"
+                  className="flex items-center gap-1.5 rounded-lg border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20 transition-colors shadow-xs"
                 >
                   <Eye className="h-3.5 w-3.5" />
                   View Agent Findings ({activeAgent.targetTab})
@@ -445,25 +445,25 @@ export function CinematicAgentPipeline({
 
           {/* Agent Mission Readout / Stats Grid */}
           <div className="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-            <div className="rounded-lg border border-line bg-elevated/70 p-3">
+            <div className="rounded-lg border border-line bg-elevated/40 p-3">
               <span className="text-[11px] font-mono text-mute block uppercase">Execution State</span>
-              <span className="mt-1 text-sm font-bold text-ink flex items-center gap-1.5">
+              <span className="mt-1 text-sm font-bold text-heading flex items-center gap-1.5">
                 <span className={cn(
                   "h-2 w-2 rounded-full",
-                  activeStageInfo?.status === "completed" ? "bg-ok" : activeStageInfo?.status === "running" ? "bg-accent animate-ping" : "bg-mute"
+                  activeStageInfo?.status === "completed" ? "bg-ok" : activeStageInfo?.status === "running" ? "bg-primary animate-ping" : "bg-mute"
                 )} />
                 {activeStageInfo?.status ? activeStageInfo.status.toUpperCase() : "PENDING"}
               </span>
             </div>
 
-            <div className="rounded-lg border border-line bg-elevated/70 p-3">
+            <div className="rounded-lg border border-line bg-elevated/40 p-3">
               <span className="text-[11px] font-mono text-mute block uppercase">Execution Latency</span>
-              <span className="mt-1 text-sm font-mono font-bold text-ink">
+              <span className="mt-1 text-sm font-mono font-bold text-heading">
                 {activeStageInfo?.duration_ms != null ? fmtMs(activeStageInfo.duration_ms) : "—"}
               </span>
             </div>
 
-            <div className="rounded-lg border border-line bg-elevated/70 p-3 sm:col-span-2">
+            <div className="rounded-lg border border-line bg-elevated/40 p-3 sm:col-span-2">
               <span className="text-[11px] font-mono text-mute block uppercase">Agent Telemetry & Output</span>
               <span className="mt-1 text-xs text-mute font-mono block truncate">
                 {activeStageInfo?.detail || "Evidence payload processed cleanly according to contract."}
@@ -473,7 +473,7 @@ export function CinematicAgentPipeline({
 
           {/* Detailed Discovered Attributes */}
           {activeStageInfo?.stats && Object.keys(activeStageInfo.stats).length > 0 && (
-            <div className="mt-3.5 rounded-lg border border-line/60 bg-bg/80 p-3">
+            <div className="mt-3.5 rounded-lg border border-line/60 bg-elevated/30 p-3">
               <span className="text-[11px] font-mono text-mute block uppercase mb-1.5 font-bold">
                 Internal Discovered Signatures:
               </span>
@@ -481,10 +481,10 @@ export function CinematicAgentPipeline({
                 {Object.entries(activeStageInfo.stats).map(([k, v]) => (
                   <span
                     key={k}
-                    className="inline-flex items-center gap-1 rounded bg-elevated px-2 py-1 font-mono text-xs text-ink border border-line"
+                    className="inline-flex items-center gap-1 rounded bg-surface px-2 py-1 font-mono text-xs text-heading border border-line shadow-xs"
                   >
                     <span className="text-mute">{k}:</span>
-                    <strong className="text-accent">
+                    <strong className="text-primary font-bold">
                       {typeof v === "object" ? JSON.stringify(v) : String(v)}
                     </strong>
                   </span>

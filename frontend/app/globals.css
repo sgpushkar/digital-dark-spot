@@ -2,13 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; }
-html { background: #0B0D10; }
-body { @apply bg-bg text-ink font-sans antialiased; font-size: 15px; line-height: 1.55; }
-h1, h2, h3 { @apply font-serif; letter-spacing: -0.01em; }
-::selection { background: rgba(139, 156, 246, 0.35); }
-:focus-visible { outline: 2px solid #8B9CF6; outline-offset: 2px; }
-.prose-line { max-width: 68ch; }
-mark.evidence { background: rgba(231, 173, 82, 0.28); color: inherit; padding: 0 2px; border-radius: 2px; }
-@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-.react-flow__attribution { display: none; }
+:root {
+  /* Primary palette */
+  --color-background: #F5F4EF;
+  --color-primary: #183B32;
+  --color-accent: #C5F36A;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #E6E6DF;
+
+  /* Typography */
+  --color-heading: #242823;
+  --color-text: #343A34;
+  --color-muted: #789487;
+
+  /* Borders */
+  --color-border: #D8DAD1;
+
+  /* Semantic colors */
+  --color-success: #438568;
+  --color-warning: #D49A42;
+  --color-danger: #C65D55;
+  --color-neutral: #92978F;
+
+  /* Typography */
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  color-scheme: light;
+}
+
+html {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+body {
+  @apply bg-bg text-ink font-sans antialiased;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading text-heading;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+::selection {
+  background: rgba(197, 243, 106, 0.6);
+  color: #183B32;
+}
+
+:focus-visible {
+  outline: 2px solid #183B32;
+  outline-offset: 2px;
+}
+
+.prose-line {
+  max-width: 68ch;
+}
+
+mark.evidence {
+  background: rgba(197, 243, 106, 0.45);
+  color: #183B32;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+  border-bottom: 2px solid #183B32;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.react-flow__attribution {
+  display: none;
+}

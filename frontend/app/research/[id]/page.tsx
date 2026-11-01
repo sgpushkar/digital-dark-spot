@@ -80,11 +80,11 @@ export default function Workspace() {
   const getTabBadge = (k: string) => {
     if (k === "pipeline" && running) return <span className="h-2 w-2 rounded-full bg-accent animate-ping" />;
     if (!ready) return null;
-    if (k === "coverage" && gapsCount != null && gapsCount > 0) return <span className="rounded bg-warn/20 px-1.5 py-0.2 text-[11px] font-mono font-bold text-warn">{gapsCount}</span>;
-    if (k === "contradictions" && conflictsCount != null && conflictsCount > 0) return <span className="rounded bg-bad/20 px-1.5 py-0.2 text-[11px] font-mono font-bold text-bad">{conflictsCount}</span>;
-    if (k === "checklist" && tasksCount != null && tasksCount > 0) return <span className="rounded bg-elevated px-1.5 py-0.2 text-[11px] font-mono text-mute">{tasksCount}</span>;
-    if (k === "evidence" && claimsCount != null) return <span className="rounded bg-elevated px-1.5 py-0.2 text-[11px] font-mono text-mute">{claimsCount}</span>;
-    if (k === "sources" && sources.data?.items?.length) return <span className="rounded bg-elevated px-1.5 py-0.2 text-[11px] font-mono text-mute">{sources.data.items.length}</span>;
+    if (k === "coverage" && gapsCount != null && gapsCount > 0) return <span className="rounded bg-warning/20 border border-warning/30 px-1.5 py-0.2 text-[11px] font-mono font-bold text-heading">{gapsCount}</span>;
+    if (k === "contradictions" && conflictsCount != null && conflictsCount > 0) return <span className="rounded bg-bad/20 border border-bad/30 px-1.5 py-0.2 text-[11px] font-mono font-bold text-bad">{conflictsCount}</span>;
+    if (k === "checklist" && tasksCount != null && tasksCount > 0) return <span className="rounded bg-elevated border border-line px-1.5 py-0.2 text-[11px] font-mono text-heading">{tasksCount}</span>;
+    if (k === "evidence" && claimsCount != null) return <span className="rounded bg-elevated border border-line px-1.5 py-0.2 text-[11px] font-mono text-heading">{claimsCount}</span>;
+    if (k === "sources" && sources.data?.items?.length) return <span className="rounded bg-elevated border border-line px-1.5 py-0.2 text-[11px] font-mono text-heading">{sources.data.items.length}</span>;
     return null;
   };
 
@@ -96,9 +96,9 @@ export default function Workspace() {
     <div>
       {s.is_demo && <DemoBanner label={cfg.data?.demo_label} />}
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-8">
-        <header className="space-y-2">
+        <header className="space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h1 className="text-2xl md:text-3xl">{s.title}</h1>
+            <h1 className="font-heading text-2xl md:text-3xl font-extrabold tracking-tight text-heading">{s.title}</h1>
             <div className="flex items-center gap-3">
               <Button onClick={start} loading={starting || running} disabled={running}>
                 {ready ? "Re-run analysis" : running ? "Analysing" : "Start analysis"}
@@ -107,7 +107,7 @@ export default function Workspace() {
                 type="button"
                 variant="secondary"
                 onClick={() => setTheaterOpen(true)}
-                className="flex items-center gap-1.5 border-accent/40 bg-accent/10 text-accent hover:bg-accent/20"
+                className="flex items-center gap-1.5 border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 font-semibold"
                 title="Launch Fullscreen Mission Control Theater"
               >
                 <Sparkles className="h-4 w-4" />
@@ -118,19 +118,19 @@ export default function Workspace() {
           <p className="prose-line text-mute text-base">{s.research_question}</p>
           {cfg.data && (
             <p className="text-xs text-mute flex items-center gap-2">
-              <span>Extraction: <strong className="text-ink font-mono">{cfg.data.extraction_mode === "llm" ? `LLM (${cfg.data.llm_provider})` : "rule-based"}</strong></span>
+              <span>Extraction: <strong className="text-heading font-mono">{cfg.data.extraction_mode === "llm" ? `LLM (${cfg.data.llm_provider})` : "rule-based"}</strong></span>
               <span>·</span>
-              <span>Retrieval: <strong className="text-ink font-mono">{cfg.data.embedder}</strong>{cfg.data.semantic_embeddings ? " (semantic)" : " (lexical)"}</span>
-              {!connected && running && <span className="text-warn">(reconnecting live channel)</span>}
+              <span>Retrieval: <strong className="text-heading font-mono">{cfg.data.embedder}</strong>{cfg.data.semantic_embeddings ? " (semantic)" : " (lexical)"}</span>
+              {!connected && running && <span className="text-warning font-semibold">(reconnecting live channel)</span>}
             </p>
           )}
-          {notes && <p role="status" className="rounded border border-warn/40 bg-warn/10 p-2 text-sm text-warn">Some inputs were not added: {notes.split("|").join("; ")}</p>}
+          {notes && <p role="status" className="rounded-lg border border-warning/40 bg-warning/10 p-3 text-xs sm:text-sm text-heading font-mono">Some inputs were not added: {notes.split("|").join("; ")}</p>}
         </header>
 
         {startErr && <ErrorState message={startErr} />}
         {status.data && status.data.errors.length > 0 && (
-          <Panel className="space-y-1 border-warn/40 p-3 text-sm" role="alert">
-            <p className="font-medium text-warn">Some steps reported problems. Results from the rest are preserved.</p>
+          <Panel className="space-y-1 border-warning/40 p-4 text-sm" role="alert">
+            <p className="font-semibold text-heading">Some steps reported problems. Results from the rest are preserved.</p>
             <ul className="list-disc pl-5 text-mute">{status.data.errors.map((e, i) => <li key={i}>{e.stage}{e.source ? ` (${e.source})` : ""}: {e.error}</li>)}</ul>
           </Panel>
         )}
@@ -156,8 +156,8 @@ export default function Workspace() {
                 key={k}
                 value={k}
                 className={cn(
-                  "flex items-center gap-2 whitespace-nowrap border-b-2 px-3.5 py-2.5 text-sm transition-colors",
-                  tab === k ? "border-accent text-ink font-semibold" : "border-transparent text-mute hover:text-ink"
+                  "flex items-center gap-2 whitespace-nowrap border-b-2 px-3.5 py-2.5 text-sm transition-colors font-medium",
+                  tab === k ? "border-primary text-primary font-bold" : "border-transparent text-mute hover:text-heading"
                 )}
               >
                 <span>{l}</span>

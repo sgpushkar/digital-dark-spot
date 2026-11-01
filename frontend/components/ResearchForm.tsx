@@ -97,13 +97,13 @@ export function ResearchForm({ onCreated }: { onCreated: (id: string, notes: str
   return (
     <form onSubmit={submit} className="space-y-6" noValidate aria-label="New research">
       {/* Quick Demo Presets */}
-      <div className="rounded-lg border border-accent/25 bg-accent/5 p-4">
-        <div className="flex items-center gap-2 mb-2.5">
-          <Sparkles className="h-4 w-4 text-accent" aria-hidden />
-          <span className="text-sm font-semibold text-ink">Demo Scenarios & Sample Inputs</span>
-          <span className="text-xs text-mute">(Click to auto-fill)</span>
+      <div className="rounded-xl border border-line bg-surface p-4 shadow-xs">
+        <div className="flex items-center gap-2 mb-3">
+          <Sparkles className="h-4 w-4 text-primary" aria-hidden />
+          <span className="text-sm font-heading font-bold text-heading">Demo Scenarios & Sample Inputs</span>
+          <span className="text-xs text-mute font-mono">(Click to auto-fill)</span>
         </div>
-        <div className="grid gap-2 sm:grid-cols-3">
+        <div className="grid gap-2.5 sm:grid-cols-3">
           {DEMO_PRESETS.map((p) => {
             const isSelected = activePreset === p.id;
             return (
@@ -111,62 +111,102 @@ export function ResearchForm({ onCreated }: { onCreated: (id: string, notes: str
                 key={p.id}
                 type="button"
                 onClick={() => applyPreset(p)}
-                className={`relative flex flex-col items-start rounded-md border p-2.5 text-left transition-all ${
-                  isSelected
-                    ? "border-accent bg-accent/15 shadow-sm shadow-accent/20"
-                    : "border-line bg-surface/70 hover:border-accent/40 hover:bg-surface"
-                }`}
+                className={`relative flex flex-col items-start rounded-lg border p-3 text-left transition-all ${isSelected
+                    ? "border-primary bg-primary/5 shadow-xs ring-1 ring-primary/20"
+                    : "border-line bg-elevated/30 hover:border-mute hover:bg-elevated/60"
+                  }`}
               >
                 <div className="flex w-full items-center justify-between">
-                  <span className="text-xs font-medium text-ink flex items-center gap-1.5">
+                  <span className="text-xs font-semibold text-heading flex items-center gap-1.5">
                     <span>{p.icon}</span> {p.label}
                   </span>
-                  {isSelected && <Check className="h-3.5 w-3.5 text-accent shrink-0" aria-hidden />}
+                  {isSelected && <Check className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden />}
                 </div>
-                <span className="mt-1 text-[11px] text-mute leading-tight">{p.tag}</span>
+                <span className="mt-1 text-[11px] text-mute leading-snug">{p.tag}</span>
               </button>
             );
           })}
         </div>
         {activePreset && (
-          <p className="mt-2.5 text-xs text-accent/90 flex items-center gap-1.5">
-            <span>✓</span> Loaded: {DEMO_PRESETS.find((x) => x.id === activePreset)?.hint}
+          <p className="mt-3 text-xs text-heading font-mono flex items-center gap-1.5 border-t border-line/60 pt-2.5">
+            <span className="text-ok font-bold">✓</span> Loaded: {DEMO_PRESETS.find((x) => x.id === activePreset)?.hint}
           </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="q" className="mb-1 block text-sm font-medium">What do you need to find out?</label>
-        <textarea id="q" value={question} onChange={(e) => { setQuestion(e.target.value); setActivePreset(null); }} rows={2} className={field} aria-describedby={fieldError ? "q-err" : undefined}
-          placeholder="What should I verify before applying for this scholarship?" />
-        {fieldError && <p id="q-err" role="alert" className="mt-1 text-sm text-bad">{fieldError}</p>}
+        <label htmlFor="q" className="mb-1.5 block text-sm font-semibold text-heading">What do you need to find out?</label>
+        <textarea
+          id="q"
+          value={question}
+          onChange={(e) => { setQuestion(e.target.value); setActivePreset(null); }}
+          rows={2}
+          className="w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-heading placeholder:text-mute/60 shadow-xs text-sm focus:border-primary focus:ring-1 focus:ring-primary"
+          aria-describedby={fieldError ? "q-err" : undefined}
+          placeholder="What should I verify before applying for this scholarship?"
+        />
+        {fieldError && <p id="q-err" role="alert" className="mt-1.5 text-xs font-medium text-bad">{fieldError}</p>}
       </div>
+
       <div className="grid gap-4 md:grid-cols-2">
-        <div><label htmlFor="t" className="mb-1 block text-sm font-medium">Topic <span className="text-mute">(optional)</span></label>
-          <input id="t" value={topic} onChange={(e) => setTopic(e.target.value)} className={field} placeholder="Name of the scholarship, product, policy…" /></div>
-        <div><label htmlFor="o" className="mb-1 block text-sm font-medium">Research goal <span className="text-mute">(optional)</span></label>
-          <input id="o" value={objective} onChange={(e) => setObjective(e.target.value)} className={field} placeholder="What decision will this inform?" /></div>
+        <div>
+          <label htmlFor="t" className="mb-1.5 block text-sm font-semibold text-heading">Topic <span className="font-normal text-mute text-xs">(optional)</span></label>
+          <input
+            id="t"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-heading placeholder:text-mute/60 shadow-xs text-sm focus:border-primary focus:ring-1 focus:ring-primary"
+            placeholder="Name of the scholarship, product, policy…"
+          />
+        </div>
+        <div>
+          <label htmlFor="o" className="mb-1.5 block text-sm font-semibold text-heading">Research goal <span className="font-normal text-mute text-xs">(optional)</span></label>
+          <input
+            id="o"
+            value={objective}
+            onChange={(e) => setObjective(e.target.value)}
+            className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-heading placeholder:text-mute/60 shadow-xs text-sm focus:border-primary focus:ring-1 focus:ring-primary"
+            placeholder="What decision will this inform?"
+          />
+        </div>
       </div>
+
       <div>
-        <label htmlFor="u" className="mb-1 block text-sm font-medium">Source URLs <span className="text-mute">(one per line)</span></label>
-        <textarea id="u" value={urls} onChange={(e) => setUrls(e.target.value)} rows={4} className={`${field} font-mono text-sm`} placeholder="https://…" />
-        <p className="mt-1 text-xs text-mute">Only public web pages are fetched. Local and private addresses are rejected.</p>
+        <label htmlFor="u" className="mb-1.5 block text-sm font-semibold text-heading">Source URLs <span className="font-normal text-mute text-xs">(one per line)</span></label>
+        <textarea
+          id="u"
+          value={urls}
+          onChange={(e) => setUrls(e.target.value)}
+          rows={4}
+          className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-heading placeholder:text-mute/60 shadow-xs font-mono text-xs sm:text-sm focus:border-primary focus:ring-1 focus:ring-primary"
+          placeholder="https://…"
+        />
+        <p className="mt-1.5 text-xs text-mute font-body">Only public web pages are fetched. Local and private addresses are rejected.</p>
       </div>
+
       <div>
-        <label htmlFor="f" className="mb-1 block text-sm font-medium">Documents <span className="text-mute">(PDF, HTML or text, up to {MAX_MB} MB each)</span></label>
-        <input id="f" type="file" multiple accept=".pdf,.html,.htm,.txt,.md" onChange={(e) => onFiles(e.target.files)} className="block w-full text-sm text-mute file:mr-3 file:rounded file:border file:border-line file:bg-elevated file:px-3 file:py-1.5 file:text-ink" />
+        <label htmlFor="f" className="mb-1.5 block text-sm font-semibold text-heading">Documents <span className="font-normal text-mute text-xs">(PDF, HTML or text, up to {MAX_MB} MB each)</span></label>
+        <input
+          id="f"
+          type="file"
+          multiple
+          accept=".pdf,.html,.htm,.txt,.md"
+          onChange={(e) => onFiles(e.target.files)}
+          className="block w-full text-xs text-mute file:mr-3 file:rounded-md file:border file:border-line file:bg-elevated file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-heading hover:file:bg-elevated/80 cursor-pointer"
+        />
         {files.length > 0 ? (
-          <p className="mt-1 text-xs text-ok flex items-center gap-1">
+          <p className="mt-1.5 text-xs text-ok font-mono flex items-center gap-1">
             <FileText className="h-3 w-3" /> Selected: {files.map((f) => f.name).join(", ")}
           </p>
         ) : (
-          <p className="mt-1 text-xs text-mute">
-            Ready-to-use sample files available in the local <code className="text-accent">demo-samples/</code> folder.
+          <p className="mt-1.5 text-xs text-mute font-body">
+            Ready-to-use sample files available in the local <code className="text-primary font-mono font-semibold">demo-samples/</code> folder.
           </p>
         )}
       </div>
+
       {error && <ErrorState message={error} />}
-      <Button type="submit" size="lg" loading={busy}>Create research workspace</Button>
+      <Button type="submit" size="lg" loading={busy} className="w-full sm:w-auto font-heading font-bold">Create research workspace</Button>
     </form>
   );
 }

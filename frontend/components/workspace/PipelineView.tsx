@@ -26,16 +26,16 @@ const STAGE_ICONS: Record<string, React.ComponentType<{ className?: string }>> =
 };
 
 const TONE: Record<StageStatus, string> = {
-  pending: "border-line text-mute bg-surface/50",
-  running: "border-accent text-ink bg-accent/10 shadow-lg shadow-accent/20 animate-pulse ring-1 ring-accent",
-  completed: "border-ok/50 text-ink bg-surface hover:border-ok/80",
-  failed: "border-bad text-ink bg-bad/10",
-  skipped: "border-line text-mute border-dashed bg-surface/30",
+  pending: "border-line text-mute bg-surface/70",
+  running: "border-primary text-heading bg-primary/5 shadow-sm ring-1 ring-primary/30",
+  completed: "border-ok/40 text-heading bg-surface hover:border-ok/70",
+  failed: "border-bad text-heading bg-bad/5",
+  skipped: "border-line text-mute border-dashed bg-surface/40",
 };
 
 const STATUS_ICONS: Record<StageStatus, React.ReactNode> = {
   pending: <Circle className="h-3.5 w-3.5 text-mute" aria-hidden />,
-  running: <Loader2 className="h-3.5 w-3.5 animate-spin text-accent" aria-hidden />,
+  running: <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" aria-hidden />,
   completed: <Check className="h-3.5 w-3.5 text-ok" aria-hidden />,
   failed: <AlertTriangle className="h-3.5 w-3.5 text-bad" aria-hidden />,
   skipped: <SkipForward className="h-3.5 w-3.5 text-mute" aria-hidden />,
@@ -168,8 +168,8 @@ export function PipelineView({
       target: s.stage,
       animated: s.status === "running" || stages[i].status === "running",
       style: {
-        stroke: s.status === "completed" ? "#35B779" : s.status === "running" ? "#8B9CF6" : "#242B35",
-        strokeWidth: s.status === "running" ? 2 : 1.5,
+        stroke: s.status === "completed" ? "#438568" : s.status === "running" ? "#183B32" : "#D8DAD1",
+        strokeWidth: s.status === "running" ? 2.5 : 1.5,
       },
     }));
     return { nodes, edges };
@@ -180,19 +180,19 @@ export function PipelineView({
       {/* View mode toggle header */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
         <div className="flex items-center gap-2">
-          <Layers className="h-4 w-4 text-accent" />
-          <span className="text-sm font-semibold text-ink">Multi-Agent Evidence Orchestration</span>
-          <span className="text-xs text-mute">
+          <Layers className="h-4 w-4 text-primary" />
+          <span className="font-heading text-sm font-bold text-heading">Multi-Agent Evidence Orchestration</span>
+          <span className="text-xs text-mute font-mono">
             ({stages.filter((s) => s.status === "completed").length} of {stages.length} nodes verified)
           </span>
         </div>
-        <div className="flex rounded-md border border-line bg-surface p-0.5 text-xs">
+        <div className="flex rounded-lg border border-line bg-elevated/40 p-1 text-xs">
           <button
             type="button"
             onClick={() => setViewMode("agents")}
             className={cn(
-              "flex items-center gap-1.5 px-3 py-1 rounded transition-colors",
-              viewMode === "agents" ? "bg-accent/20 text-accent font-semibold shadow-sm" : "text-mute hover:text-ink"
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all font-medium",
+              viewMode === "agents" ? "bg-primary text-accent font-bold shadow-xs" : "text-mute hover:text-heading"
             )}
           >
             <Zap className="h-3 w-3" />
@@ -202,8 +202,8 @@ export function PipelineView({
             type="button"
             onClick={() => setViewMode("cards")}
             className={cn(
-              "px-3 py-1 rounded transition-colors",
-              viewMode === "cards" ? "bg-elevated text-ink font-medium shadow-sm" : "text-mute hover:text-ink"
+              "px-3 py-1.5 rounded-md transition-all font-medium",
+              viewMode === "cards" ? "bg-surface text-heading font-bold shadow-xs border border-line" : "text-mute hover:text-heading"
             )}
           >
             Grid Cards
@@ -212,8 +212,8 @@ export function PipelineView({
             type="button"
             onClick={() => setViewMode("flow")}
             className={cn(
-              "px-3 py-1 rounded transition-colors",
-              viewMode === "flow" ? "bg-elevated text-ink font-medium shadow-sm" : "text-mute hover:text-ink"
+              "px-3 py-1.5 rounded-md transition-all font-medium",
+              viewMode === "flow" ? "bg-surface text-heading font-bold shadow-xs border border-line" : "text-mute hover:text-heading"
             )}
           >
             Architecture Flow
@@ -231,9 +231,9 @@ export function PipelineView({
           onSelectTab={onSelectTab || (() => {})}
         />
       ) : viewMode === "flow" ? (
-        <div className="h-[430px] rounded-lg border border-line bg-surface shadow-inner" role="region" aria-label="Pipeline graph">
+        <div className="h-[430px] rounded-xl border border-line bg-surface shadow-xs" role="region" aria-label="Pipeline graph">
           <ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} fitView nodesConnectable={false} proOptions={{ hideAttribution: true }} minZoom={0.35}>
-            <Background color="#242B35" gap={24} />
+            <Background color="#D8DAD1" gap={24} />
           </ReactFlow>
         </div>
       ) : (

@@ -57,14 +57,14 @@ export function WorkspacePipelineTracker({
   const score = reportData?.completeness?.score != null ? Math.round(reportData.completeness.score) : null;
 
   return (
-    <div className="rounded-xl border border-line bg-surface/80 p-4 shadow-sm backdrop-blur-sm transition-all space-y-4">
+    <div className="rounded-xl border border-line bg-surface p-4 shadow-xs transition-all space-y-4">
       {/* Top Status Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <div className={cn(
-            "flex h-8 w-8 items-center justify-center rounded-lg border",
+            "flex h-9 w-9 items-center justify-center rounded-lg border transition-colors shadow-xs",
             running
-              ? "border-accent bg-accent/20 text-accent animate-pulse"
+              ? "border-primary bg-primary text-accent"
               : ready
               ? "border-ok/40 bg-ok/15 text-ok"
               : "border-line bg-elevated text-mute"
@@ -79,7 +79,7 @@ export function WorkspacePipelineTracker({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-ink">
+              <span className="font-heading text-sm font-bold text-heading">
                 {running
                   ? `Processing Stage ${runningStageIdx + 1} of ${totalStages}`
                   : ready
@@ -87,8 +87,8 @@ export function WorkspacePipelineTracker({
                   : "Pipeline Ready"}
               </span>
               <span className={cn(
-                "rounded px-2 py-0.5 text-[11px] font-mono font-medium uppercase",
-                running ? "bg-accent/20 text-accent ring-1 ring-accent/30" : ready ? "bg-ok/15 text-ok" : "bg-elevated text-mute"
+                "rounded px-2 py-0.5 text-[11px] font-mono font-semibold uppercase",
+                running ? "bg-primary text-accent" : ready ? "bg-ok/15 text-ok border border-ok/30" : "bg-elevated text-mute border border-line"
               )}>
                 {running ? "Live Execution" : ready ? "All 11 Nodes Completed" : "Awaiting Run"}
               </span>
@@ -105,12 +105,12 @@ export function WorkspacePipelineTracker({
 
         {/* Progress Bar & Percentage */}
         <div className="flex items-center gap-3 w-full sm:w-auto">
-          <div className="flex-1 sm:w-36 h-2 rounded-full bg-elevated overflow-hidden border border-line/60">
+          <div className="flex-1 sm:w-40 h-2 rounded-full bg-elevated overflow-hidden border border-line">
             <div
               className={cn(
                 "h-full rounded-full transition-all duration-500",
                 running
-                  ? "bg-gradient-to-r from-accent to-ok animate-pulse"
+                  ? "bg-primary animate-pulse"
                   : ready
                   ? "bg-ok"
                   : "bg-mute/40"
@@ -118,7 +118,7 @@ export function WorkspacePipelineTracker({
               style={{ width: `${progressPercent}%` }}
             />
           </div>
-          <span className="font-mono text-xs font-semibold text-ink shrink-0">
+          <span className="font-mono text-xs font-bold text-heading shrink-0">
             {progressPercent}%
           </span>
         </div>
@@ -144,9 +144,9 @@ export function WorkspacePipelineTracker({
                 className={cn(
                   "group relative flex flex-1 flex-col items-center rounded-lg py-2 px-1 text-center transition-all",
                   isRunning
-                    ? "bg-accent/15 ring-1 ring-accent"
+                    ? "bg-primary/10 ring-1 ring-primary/40"
                     : isCompleted
-                    ? "hover:bg-elevated/80"
+                    ? "hover:bg-elevated/70"
                     : "opacity-60 hover:opacity-100"
                 )}
                 title={`${s.label}: ${s.status}${s.duration_ms != null ? ` (${fmtMs(s.duration_ms)})` : ""}`}
@@ -154,7 +154,7 @@ export function WorkspacePipelineTracker({
                 <div className={cn(
                   "flex h-6 w-6 items-center justify-center rounded-full border text-[11px] font-bold font-mono transition-transform group-hover:scale-110",
                   isRunning
-                    ? "border-accent bg-accent text-bg animate-spin"
+                    ? "border-primary bg-primary text-accent animate-spin"
                     : isCompleted
                     ? "border-ok/40 bg-ok/20 text-ok"
                     : isFailed
@@ -173,12 +173,12 @@ export function WorkspacePipelineTracker({
                 </div>
                 <span className={cn(
                   "mt-1 text-[11px] font-medium truncate max-w-full leading-tight",
-                  isRunning ? "text-accent font-semibold" : isCompleted ? "text-ink" : "text-mute"
+                  isRunning ? "text-primary font-bold" : isCompleted ? "text-heading" : "text-mute"
                 )}>
                   {shortName}
                 </span>
                 {s.duration_ms != null && (
-                  <span className="text-[10px] text-mute/80 font-mono mt-0.5">
+                  <span className="text-[10px] text-mute font-mono mt-0.5">
                     {fmtMs(s.duration_ms)}
                   </span>
                 )}
@@ -190,13 +190,13 @@ export function WorkspacePipelineTracker({
 
       {/* When Finished: Quick Action Findings Pills */}
       {ready && (
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-line/50">
-          <span className="text-xs font-medium text-mute mr-1">Quick Jump:</span>
+        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-line/60">
+          <span className="text-xs font-mono uppercase tracking-wider text-mute mr-1">Quick Jump:</span>
           {score != null && (
             <button
               type="button"
               onClick={() => onSelectTab("dashboard")}
-              className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent hover:bg-accent/20 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary hover:bg-primary/15 transition-colors"
             >
               <Sparkles className="h-3 w-3" />
               Completeness Score: {score}/100
@@ -206,9 +206,9 @@ export function WorkspacePipelineTracker({
             <button
               type="button"
               onClick={() => onSelectTab("coverage")}
-              className="inline-flex items-center gap-1.5 rounded-full border border-warn/40 bg-warn/10 px-3 py-1 text-xs font-semibold text-warn hover:bg-warn/20 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-warning/30 bg-warning/15 px-3 py-1 text-xs font-semibold text-heading hover:bg-warning/25 transition-colors"
             >
-              <Search className="h-3 w-3" />
+              <Search className="h-3 w-3 text-warning" />
               {gapsCount} Potential Gap{gapsCount > 1 ? "s" : ""}
             </button>
           )}
@@ -216,9 +216,9 @@ export function WorkspacePipelineTracker({
             <button
               type="button"
               onClick={() => onSelectTab("contradictions")}
-              className="inline-flex items-center gap-1.5 rounded-full border border-bad/40 bg-bad/10 px-3 py-1 text-xs font-semibold text-bad hover:bg-bad/20 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-bad/30 bg-bad/10 px-3 py-1 text-xs font-semibold text-bad hover:bg-bad/20 transition-colors"
             >
-              <GitCompare className="h-3 w-3" />
+              <GitCompare className="h-3 w-3 text-bad" />
               {conflictsCount} Contradiction{conflictsCount > 1 ? "s" : ""}
             </button>
           )}
@@ -226,7 +226,7 @@ export function WorkspacePipelineTracker({
             <button
               type="button"
               onClick={() => onSelectTab("evidence")}
-              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-elevated px-3 py-1 text-xs font-medium text-ink hover:border-accent/40 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-heading hover:border-primary/40 transition-colors shadow-xs"
             >
               <FileCheck className="h-3 w-3 text-ok" />
               {claimsCount} Claims Verified
@@ -236,16 +236,16 @@ export function WorkspacePipelineTracker({
             <button
               type="button"
               onClick={() => onSelectTab("checklist")}
-              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-elevated px-3 py-1 text-xs font-medium text-ink hover:border-accent/40 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-heading hover:border-primary/40 transition-colors shadow-xs"
             >
-              <ListChecks className="h-3 w-3 text-accent" />
+              <ListChecks className="h-3 w-3 text-primary" />
               {tasksCount} Tasks
             </button>
           )}
           <button
             type="button"
             onClick={() => onSelectTab("report")}
-            className="ml-auto inline-flex items-center gap-1 text-xs font-medium text-mute hover:text-ink transition-colors"
+            className="ml-auto inline-flex items-center gap-1 text-xs font-mono font-medium text-mute hover:text-heading transition-colors"
           >
             Full Report <ArrowRight className="h-3 w-3" />
           </button>
