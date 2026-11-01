@@ -1,0 +1,19 @@
+Hospital Clinical Advisory — Protocol RX-79
+Issued: 14 October 2026
+Target Cycle: 2026-27
+
+1. Overview
+Protocol RX-79 establishes clinical dosage and administration schedules for pediatric neuro-inflammation patients.
+
+2. Dosage & Administration
+The approved starting dosage is 15 mg per kilogram of body weight administered every 12 hours via intravenous infusion.
+
+3. Monitoring Schedule
+Blood serum concentrations and renal clearance rates must be monitored every 24 hours during the first 5 days of treatment.
+
+4. Cost & Procurement
+The hospital formulary price is ₹4,200 per vial, with patient assistance programs covering up to 50% for eligible low-income cases.
+
+5. Warnings
+Contraindicated for patients with acute hepatic impairment.
+(Notice: Pediatric dosage adjustment for patients under 2 years of age is not documented in this advisory.)
