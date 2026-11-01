@@ -37,17 +37,17 @@ const STAGE_KEYS = [
 ];
 
 const AGENTS: Agent[] = [
-  { id: "SCOUT-01", stageKey: "source_collection", code: "SCOUT-01", role: "Collector Agent", desc: "URL fetcher · SSRF & robots guardian", color: "#38BDF8", icon: Radar, x: 12.5, y: 20, ms: 1400 },
+  { id: "SCOUT-01", stageKey: "source_collection", code: "SCOUT-01", role: "Collector Agent", desc: "URL fetcher · SSRF & robots guardian", color: "#38BDF8", icon: Radar, x: 12.5, y: 22, ms: 1400 },
   { id: "PARSER-02", stageKey: "content_extraction", code: "PARSER-02", role: "Document Ingestor", desc: "HTML/PDF chunker · injection stripper", color: "#7DD3FC", icon: FileText, x: 12.5, y: 50, ms: 1600 },
-  { id: "NEXUS-03", stageKey: "evidence_indexing", code: "NEXUS-03", role: "Neural Indexer", desc: "Lexical hash & BM25 hybrid index", color: "#818CF8", icon: Database, x: 12.5, y: 80, ms: 1200 },
-  { id: "ARCHITECT-04", stageKey: "research_planning", code: "ARCHITECT-04", role: "Research Planner", desc: "Objective taxonomy proposer", color: "#A78BFA", icon: Compass, x: 37.5, y: 32, ms: 1500 },
-  { id: "MINER-05", stageKey: "claim_extraction", code: "MINER-05", role: "Claim Extractor", desc: "Atomic S-P-O claims · verbatim quotes", color: "#C084FC", icon: Pickaxe, x: 37.5, y: 68, ms: 2200 },
-  { id: "CHRONOS-06", stageKey: "freshness_analysis", code: "CHRONOS-06", role: "Temporal Auditor", desc: "Cycle drift vs target period", color: "#F472B6", icon: Clock, x: 62.5, y: 20, ms: 1400 },
+  { id: "NEXUS-03", stageKey: "evidence_indexing", code: "NEXUS-03", role: "Neural Indexer", desc: "Lexical hash & BM25 hybrid index", color: "#818CF8", icon: Database, x: 12.5, y: 78, ms: 1200 },
+  { id: "ARCHITECT-04", stageKey: "research_planning", code: "ARCHITECT-04", role: "Research Planner", desc: "Objective taxonomy proposer", color: "#A78BFA", icon: Compass, x: 37.5, y: 36, ms: 1500 },
+  { id: "MINER-05", stageKey: "claim_extraction", code: "MINER-05", role: "Claim Extractor", desc: "Atomic S-P-O claims · verbatim quotes", color: "#C084FC", icon: Pickaxe, x: 37.5, y: 64, ms: 2200 },
+  { id: "CHRONOS-06", stageKey: "freshness_analysis", code: "CHRONOS-06", role: "Temporal Auditor", desc: "Cycle drift vs target period", color: "#F472B6", icon: Clock, x: 62.5, y: 22, ms: 1400 },
   { id: "ARBITER-07", stageKey: "contradiction_analysis", code: "ARBITER-07", role: "Contradiction Detective", desc: "Numeric & date conflicts, cycle disambiguation", color: "#FB7185", icon: Scale, x: 62.5, y: 50, ms: 2400 },
-  { id: "HUNTER-08", stageKey: "gap_detection", code: "HUNTER-08", role: "Dark Spot Hunter", desc: "Coverage matrix · missing knowledge", color: "#FBBF24", icon: Crosshair, x: 62.5, y: 80, ms: 1800 },
-  { id: "SENTINEL-09", stageKey: "evidence_verification", code: "SENTINEL-09", role: "Epistemic Guardian", desc: "Quote fidelity · ungrounded inferences", color: "#34D399", icon: ShieldCheck, x: 87.5, y: 20, ms: 1600 },
+  { id: "HUNTER-08", stageKey: "gap_detection", code: "HUNTER-08", role: "Dark Spot Hunter", desc: "Coverage matrix · missing knowledge", color: "#FBBF24", icon: Crosshair, x: 62.5, y: 78, ms: 1800 },
+  { id: "SENTINEL-09", stageKey: "evidence_verification", code: "SENTINEL-09", role: "Epistemic Guardian", desc: "Quote fidelity · ungrounded inferences", color: "#34D399", icon: ShieldCheck, x: 87.5, y: 22, ms: 1600 },
   { id: "STRATEGIST-10", stageKey: "checklist_generation", code: "STRATEGIST-10", role: "Action Synthesizer", desc: "Prioritized verification checklist", color: "#2DD4BF", icon: ListChecks, x: 87.5, y: 50, ms: 1400 },
-  { id: "ORACLE-11", stageKey: "report_generation", code: "ORACLE-11", role: "Executive Synthesizer", desc: "Completeness formula · final report", color: "#BEF264", icon: Sparkles, x: 87.5, y: 80, ms: 2000 },
+  { id: "ORACLE-11", stageKey: "report_generation", code: "ORACLE-11", role: "Executive Synthesizer", desc: "Completeness formula · final report", color: "#BEF264", icon: Sparkles, x: 87.5, y: 78, ms: 2000 },
 ];
 
 // Connection edges between agent nodes
@@ -56,11 +56,11 @@ const EDGES: [number, number][] = [
   [5, 8], [6, 8], [7, 9], [6, 9], [8, 10], [9, 10],
 ];
 
-const W = 1200, H = 680;
+const W = 1200, H = 640;
 const pt = (a: Agent) => ({ x: (a.x / 100) * W, y: (a.y / 100) * H });
 const edgePath = (f: Agent, t: Agent) => {
   const p = pt(f), q = pt(t), dx = (q.x - p.x) / 2;
-  return `M${p.x + 90},${p.y} C${p.x + 90 + dx},${p.y} ${q.x - 90 - dx},${q.y} ${q.x - 90},${q.y}`;
+  return `M${p.x + 126},${p.y} C${p.x + 126 + dx},${p.y} ${q.x - 126 - dx},${q.y} ${q.x - 126},${q.y}`;
 };
 const toneColor: Record<Tone, string> = { info: "#7DD3FC", ok: "#34D399", warn: "#FBBF24", bad: "#FB7185" };
 const fmt = (ms: number) => `${String(Math.floor(ms / 1000)).padStart(2, "0")}.${String(ms % 1000).padStart(3, "0")}s`;
@@ -364,46 +364,48 @@ export default function MissionControlTheater({
           </header>
 
           {/* Neural Canvas & Laser Dataflow */}
-          <main className="relative z-10 flex h-[calc(100%-4.5rem)] flex-col items-center overflow-x-auto px-4 pt-3">
-            <div className="relative w-full min-w-[980px] max-w-[1280px]" style={{ aspectRatio: `${W}/${H}`, maxHeight: "calc(100vh - 17rem)" }}>
-              <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden>
-                <defs>
-                  <filter id="glow"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-                </defs>
-                {["TIER 1 · PERCEPTION", "TIER 2 · PLANNING & MINING", "TIER 3 · TEMPORAL & ADVERSARIAL", "TIER 4 · VERIFICATION & OUTPUT"].map((t, i) => (
-                  <text key={t} x={(12.5 + i * 25) / 100 * W} y={14} textAnchor="middle" fontSize="10" letterSpacing="2" fill="#475569">{t}</text>
-                ))}
-                {EDGES.map(([f, t], i) => {
-                  const d = edgePath(AGENTS[f], AGENTS[t]);
-                  const feeding = active === t;
-                  const bursting = burst === f;
-                  const c = AGENTS[f].color;
+          <main className="relative z-10 flex h-[calc(100vh-4.5rem)] flex-col items-center justify-between px-6 py-4 overflow-hidden">
+            <div className="relative w-full max-w-[1240px] flex-1 flex items-center justify-center min-h-[380px]">
+              <div className="relative w-full" style={{ aspectRatio: `${W}/${H}`, maxHeight: "calc(100vh - 16rem)" }}>
+                <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full pointer-events-none" aria-hidden>
+                  <defs>
+                    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+                  </defs>
+                  {["TIER 1 · PERCEPTION", "TIER 2 · PLANNING & MINING", "TIER 3 · TEMPORAL & ADVERSARIAL", "TIER 4 · VERIFICATION & OUTPUT"].map((t, i) => (
+                    <text key={t} x={(12.5 + i * 25) / 100 * W} y={32} textAnchor="middle" fontSize="11" fontWeight="600" letterSpacing="2" fill="#64748B">{t}</text>
+                  ))}
+                  {EDGES.map(([f, t], i) => {
+                    const d = edgePath(AGENTS[f], AGENTS[t]);
+                    const feeding = active === t;
+                    const bursting = burst === f;
+                    const c = AGENTS[f].color;
+                    return (
+                      <g key={`${run}-${i}`}>
+                        <path id={`e${run}-${i}`} d={d} fill="none" stroke={c} strokeOpacity={feeding || bursting ? 0.7 : done.includes(f) ? 0.3 : 0.12} strokeWidth={feeding ? 1.8 : 1} strokeDasharray="4 6" />
+                        {(feeding || bursting) && [0, 1, 2].map((k) => (
+                          <circle key={`${k}-${feeding}-${bursting}`} r={bursting ? 4 : 3} fill={c} filter="url(#glow)">
+                            <animateMotion dur={bursting ? "0.55s" : "1.4s"} begin={`${k * (bursting ? 0.18 : 0.45)}s`} repeatCount={bursting ? 2 : "indefinite"}>
+                              <mpath href={`#e${run}-${i}`} />
+                            </animateMotion>
+                          </circle>
+                        ))}
+                      </g>
+                    );
+                  })}
+                </svg>
+
+                {AGENTS.map((ag, i) => {
+                  const stageInfo = stages.find((s) => s.stage === ag.stageKey);
+                  const latency = latencies[i] ?? stageInfo?.duration_ms ?? [18, 42, 9, 27, 64, 15, 88, 33, 21, 12, 46][i];
                   return (
-                    <g key={`${run}-${i}`}>
-                      <path id={`e${run}-${i}`} d={d} fill="none" stroke={c} strokeOpacity={feeding || bursting ? 0.7 : done.includes(f) ? 0.3 : 0.12} strokeWidth={feeding ? 1.8 : 1} strokeDasharray="4 6" />
-                      {(feeding || bursting) && [0, 1, 2].map((k) => (
-                        <circle key={`${k}-${feeding}-${bursting}`} r={bursting ? 4 : 3} fill={c} filter="url(#glow)">
-                          <animateMotion dur={bursting ? "0.55s" : "1.4s"} begin={`${k * (bursting ? 0.18 : 0.45)}s`} repeatCount={bursting ? 2 : "indefinite"}>
-                            <mpath href={`#e${run}-${i}`} />
-                          </animateMotion>
-                        </circle>
-                      ))}
-                    </g>
+                    <AgentNode key={`${run}-${ag.id}`} ag={ag} state={done.includes(i) ? "done" : active === i ? "active" : "idle"} latency={latency} idx={i} burst={burst === i} />
                   );
                 })}
-              </svg>
-
-              {AGENTS.map((ag, i) => {
-                const stageInfo = stages.find((s) => s.stage === ag.stageKey);
-                const latency = latencies[i] ?? stageInfo?.duration_ms ?? [18, 42, 9, 27, 64, 15, 88, 33, 21, 12, 46][i];
-                return (
-                  <AgentNode key={`${run}-${ag.id}`} ag={ag} state={done.includes(i) ? "done" : active === i ? "active" : "idle"} latency={latency} idx={i} burst={burst === i} />
-                );
-              })}
+              </div>
             </div>
 
             {/* Live Telemetry Console (Real Data Inner Monologue) */}
-            <div className="relative z-20 mt-auto mb-4 w-full max-w-[1100px] rounded-lg border border-[#1E2633] bg-[#06080D]/70 backdrop-blur-md">
+            <div className="relative z-20 w-full max-w-[1240px] mb-2 rounded-lg border border-[#1E2633] bg-[#06080D]/80 backdrop-blur-md shrink-0 shadow-lg">
               <div className="flex items-center justify-between border-b border-[#1E2633] px-3 py-1.5 text-[10px] tracking-widest text-slate-500">
                 <span>AGENT REAL-TIME MONOLOGUE & TELEMETRY</span>
                 <span>CONF {finished ? stats.score : Math.min(stats.score, pct)}% · EVIDENCE TRACE ACTIVE</span>
@@ -451,10 +453,17 @@ function AgentNode({ ag, state, latency, idx, burst }: { ag: Agent; state: "idle
   const accent = isDone ? "#34D399" : ag.color;
   return (
     <motion.div
-      className={`absolute w-[21%] -translate-x-1/2 -translate-y-1/2 rounded-lg border bg-[#0A0F17]/90 p-2.5 backdrop-blur ${isActive ? "shadow-[0_0_30px_var(--agent-glow)]" : isDone ? "shadow-[0_0_14px_rgba(52,211,153,.25)]" : ""}`}
-      style={{ left: `${ag.x}%`, top: `${ag.y}%`, borderColor: state === "idle" ? "#1E2633" : accent, ["--agent-glow" as string]: ag.color + "99" }}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: state === "idle" ? 0.6 : 1, y: 0, scale: isActive ? 1.05 : 1 }}
+      className={`absolute w-[21%] rounded-lg border bg-[#0A0F17]/90 p-2.5 backdrop-blur ${isActive ? "shadow-[0_0_30px_var(--agent-glow)]" : isDone ? "shadow-[0_0_14px_rgba(52,211,153,.25)]" : ""}`}
+      style={{
+        left: `${ag.x}%`,
+        top: `${ag.y}%`,
+        x: "-50%",
+        y: "-50%",
+        borderColor: state === "idle" ? "#1E2633" : accent,
+        ["--agent-glow" as string]: ag.color + "99",
+      }}
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: state === "idle" ? 0.6 : 1, scale: isActive ? 1.05 : 1 }}
       transition={{ delay: idx * 0.05, type: "spring", stiffness: 160, damping: 16 }}
     >
       {burst && (
