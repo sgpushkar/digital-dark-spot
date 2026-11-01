@@ -1,8 +1,8 @@
-# Digital Dark Spot
+# Parallax - Digital Dark Spot
 
 **Find what the information doesn't tell you.**
 
-Digital Dark Spot is an evidence-first research workspace built for the Shinchan Online Hackathon 2026. Give it a research question plus URLs and documents. It does not summarise them. It reports what the sources establish, what is **missing**, what **conflicts**, what looks **outdated**, and what you should **verify next**, with every finding traceable to the passage it came from.
+Parallax - Digital Dark Spot is an evidence-first research workspace built for the Shinchan Online Hackathon 2026. Give it a research question plus URLs and documents. It does not summarise them. It reports what the sources establish, what is **missing**, what **conflicts**, what looks **outdated**, and what you should **verify next**, with every finding traceable to the passage it came from.
 
 > Don't just show users what they found. Show them what they are missing.
 

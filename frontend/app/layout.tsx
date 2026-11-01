@@ -23,7 +23,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Dark Spot: find what the information doesn't tell you",
+  title: "Parallax - Digital Dark Spot: find what the information doesn't tell you",
   description: "Evidence-first research: missing information, conflicting claims, outdated sources, and what to verify next.",
 };
 
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-accent text-xs font-mono font-bold shadow-sm transition-transform group-hover:scale-105">
                 •
               </span>
-              <span>Digital Dark Spot</span>
+              <span>Parallax - Digital Dark Spot</span>
             </Link>
             <div className="flex items-center gap-6 text-sm font-medium">
               <Link href="/research" className="text-mute transition-colors hover:text-heading">Workspaces</Link>

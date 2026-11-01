@@ -42,7 +42,7 @@ export default function Landing() {
           </h1>
           
           <p className="prose-line text-base sm:text-lg text-mute font-body leading-relaxed">
-            Standard search answers what exists. Digital Dark Spot reveals the invisible gaps: conflicting deadlines, obsolete versions, omitted renewal terms, and what needs immediate verification.
+            Standard search answers what exists. Parallax - Digital Dark Spot reveals the invisible gaps: conflicting deadlines, obsolete versions, omitted renewal terms, and what needs immediate verification.
           </p>
           
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -88,7 +88,7 @@ export default function Landing() {
             Evidence first, assumptions never.
           </h2>
           <p className="prose-line text-mute text-base leading-relaxed">
-            Conventional generative tools smooth over missing data with pleasant plausible guesses. Digital Dark Spot treats omissions as primary findings. When a clause is missing, it explicitly marks it as “not found in the sources reviewed” rather than making dangerous assumptions.
+            Conventional generative tools smooth over missing data with pleasant plausible guesses. Parallax - Digital Dark Spot treats omissions as primary findings. When a clause is missing, it explicitly marks it as “not found in the sources reviewed” rather than making dangerous assumptions.
           </p>
         </div>
 

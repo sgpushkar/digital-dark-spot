@@ -11,7 +11,7 @@ async function req<R>(path: string, init?: RequestInit): Promise<R> {
   try {
     res = await fetch(`${API_URL}${path}`, { ...init, headers: init?.body && !(init.body instanceof FormData) ? { "Content-Type": "application/json", ...init.headers } : init?.headers, cache: "no-store" });
   } catch {
-    throw new ApiError(0, "Cannot reach the Digital Dark Spot API. Check that the backend is running.");
+    throw new ApiError(0, "Cannot reach the Parallax - Digital Dark Spot API. Check that the backend is running.");
   }
   if (res.status === 204) return undefined as R;
   const body = await res.json().catch(() => null);

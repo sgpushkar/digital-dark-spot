@@ -4,9 +4,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/api", async () => {
   const actual = await vi.importActual<any>("@/lib/api");
-  return { ...actual, api: {
-    createResearch: vi.fn(), addSources: vi.fn(), upload: vi.fn(), patchTask: vi.fn(), patchFinding: vi.fn(), evidence: vi.fn(), search: vi.fn(), graph: vi.fn(),
-  } };
+  return {
+    ...actual, api: {
+      createResearch: vi.fn(), addSources: vi.fn(), upload: vi.fn(), patchTask: vi.fn(), patchFinding: vi.fn(), evidence: vi.fn(), search: vi.fn(), graph: vi.fn(),
+    }
+  };
 });
 import { api, ApiError } from "@/lib/api";
 import { Checklist } from "@/components/workspace/Checklist";
@@ -54,7 +56,7 @@ describe("ResearchForm", () => {
   });
 
   it("shows API failures instead of failing silently", async () => {
-    A.createResearch.mockRejectedValue(new ApiError(0, "Cannot reach the Digital Dark Spot API."));
+    A.createResearch.mockRejectedValue(new ApiError(0, "Cannot reach the Parallax - Digital Dark Spot API."));
     render(<ResearchForm onCreated={vi.fn()} />);
     await userEvent.type(screen.getByLabelText(/what do you need to find out/i), "A valid research question");
     await userEvent.click(screen.getByRole("button", { name: /create research workspace/i }));

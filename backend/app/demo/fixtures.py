@@ -16,7 +16,7 @@ DEMO_SOURCES = [
 <meta property="article:published_time" content="2026-07-01">
 <meta property="article:modified_time" content="2026-08-15"></head><body><main>
 <h1>Meridian Excellence Scholarship Guidelines 2026-27</h1>
-<p>This page is fictional demonstration content created for the Digital Dark Spot demo.</p>
+<p>This page is fictional demonstration content created for the Parallax - Digital Dark Spot demo.</p>
 <h2>Eligibility</h2>
 <p>Applicants must be enrolled full-time in an accredited postgraduate programme.</p>
 <p>Applicants must hold at least 75% in their previous degree.</p>
@@ -36,7 +36,7 @@ DEMO_SOURCES = [
         "source_type": "organization",
         "html": """<!doctype html><html><head><title>[DEMO] Partner University FAQ — Meridian Scholarship</title></head><body><main>
 <h1>Meridian Scholarship FAQ</h1>
-<p>This page is fictional demonstration content created for the Digital Dark Spot demo.</p>
+<p>This page is fictional demonstration content created for the Parallax - Digital Dark Spot demo.</p>
 <h2>Deadlines</h2>
 <p>Applications for the 2026-27 cycle must be submitted by 20 November 2026.</p>
 <h2>Funding</h2>
@@ -52,7 +52,7 @@ DEMO_SOURCES = [
         "html": """<!doctype html><html><head><title>[DEMO] Meridian Scholarship Announcement (2024-25 cycle)</title>
 <meta property="article:published_time" content="2024-06-10"></head><body><main>
 <h1>Meridian Scholarship 2024-25 announcement</h1>
-<p>This page is fictional demonstration content created for the Digital Dark Spot demo.</p>
+<p>This page is fictional demonstration content created for the Parallax - Digital Dark Spot demo.</p>
 <p>Applications for the 2024-25 cycle close on 15 November 2024.</p>
 <p>The award is ₹1,25,000 per year for domestic students.</p>
 <p>Applicants must hold at least 70% in their previous degree.</p>
@@ -63,7 +63,7 @@ DEMO_SOURCES = [
         "source_type": "document",
         "html": """<!doctype html><html><head><title>[DEMO] Applicant Checklist (community-written)</title></head><body><main>
 <h1>Applicant checklist</h1>
-<p>This page is fictional demonstration content created for the Digital Dark Spot demo.</p>
+<p>This page is fictional demonstration content created for the Parallax - Digital Dark Spot demo.</p>
 <h2>Documents</h2>
 <p>Applicants must submit a government photo ID, their latest transcript, a statement of purpose and two recommendation letters.</p>
 <h2>After applying</h2>

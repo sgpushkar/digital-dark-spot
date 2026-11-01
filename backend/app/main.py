@@ -34,7 +34,7 @@ def create_app(settings: Settings | None = None, *, ctx: Ctx | None = None, auto
         setup_observability(app, settings)
         yield
 
-    app = FastAPI(title="Digital Dark Spot API", version="1.0.0", lifespan=lifespan,
+    app = FastAPI(title="Parallax - Digital Dark Spot API", version="1.0.0", lifespan=lifespan,
                   description="Information-gap detection: what the sources establish, what is missing, what conflicts, what to verify next.")
     app.add_middleware(RateLimitMiddleware, per_minute=settings.rate_limit_per_minute)
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origin_list, allow_methods=["GET", "POST", "PATCH", "DELETE"], allow_headers=["*"])
